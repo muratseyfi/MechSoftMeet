@@ -32,7 +32,7 @@
                             <td>{{ record.end_time }}</td>
                             <td>{{ record.created_at }}</td>
                             <td>{{ record.id }}</td>
-                            <td><a href="{% url 'record' record.id %}">view</a></td>
+                            <td><a href="{% url 'record' record.id %}">view|</a><a href="{% url 'update_record' record.id %}">update|</a><a href="{% url 'delete_record' record.id %}">delete</a></td>
                         </tr>
                         {% endfor %}
 
