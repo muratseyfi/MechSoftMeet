@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+        {% if user.is_authenticated %}
+
+            <table class="table table-striped table-hover table-bordered ">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">Toplantı Konusu</th>
+                    <th scope="col">Organizatör</th>
+                    <th scope="col">Katılımcılar</th>
+                    <th scope="col">Tarih</th>
+                    <th scope="col">Başlangı.</th>
+                    <th scope="col">Bitiş</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                    {% if records %}
+
+                        {% for record in records %}
+                        <tr>
+                            <td>{{ record.meet_subject }}</td>
+                            <td>{{ record.organizer }}</td>
+                            <td>{{ record.participants }}</td>
+                            <td>{{ record.meet_date }}</td>
+                            <td>{{ record.start_time }}</td>
+                            <td>{{ record.end_time }}</td>
+                            <td>{{ record.created_at }}</td>
+                            <td>{{ record.id }}</td>
+                            <td><a href="{% url 'record' record.id %}">view</a></td>
+                        </tr>
+                        {% endfor %}
+
+                    {% endif %}
+                  
+                </tbody>
+              </table>
+
+            
+        
+        {% else %}
+
+        <div class="col-md-6 offset-md-3">
+            <h1>Login</h1>
+            <br />
+            <form method="POST" action="{% url 'home' %}">
+
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="username" placeholder="Kullanıcı adı" required>
+                </div>
+                <br />
+                <div class="mb-3">
+                    <input type="password" class="form-control" name="password" placeholder="Şifre" required>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-secondary">Login</button>
+
+            </form>
+        </div>
+
+        {% endif %}
+
+{% endblock %}

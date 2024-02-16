@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <strong>{{ meet_record.meet_subject }}</strong>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <p class="card-text"><strong>Organizatör: </strong>{{ meet_record.organizer }}</p>
+        <p class="card-text"><strong>Katılımcılar: </strong>{{ meet_record.participants }}</p>
+        <p class="card-text"><strong>Toplantı Tarihi: </strong>{{ meet_record.meet_date }}</p>
+        <p class="card-text"><strong>Başlangıç: </strong>{{ meet_record.start_time }}</p>
+        <p class="card-text"><strong>Bitiş: </strong>{{ meet_record.end_time }}</p>
+        <p class="card-text"><strong>Created At:</strong>{{ meet_record.created_at }}</p>
+        <p class="card-text"><strong>ID: </strong>{{ meet_record.id }}</p>
+    </p>
+      
+    </div>
+  </div>
+
+  <br/><br/>
+
+  <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+  <a href="{% url 'delete_record' meet_record.id %}" class="btn btn-danger">Delete</a>
+  <a href="{% url 'update_record' meet_record.id %}" class="btn btn-success">Update Record</a>
+
+
+{% endblock %}
